@@ -19,6 +19,7 @@ class MyLogin extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline1,
               ),
               TextFormField(
+                key: Key("userKey"),
                 decoration: InputDecoration(
                   hintText: 'Username',
                 ),
