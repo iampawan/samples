@@ -38,7 +38,7 @@ class MyLogin extends StatelessWidget {
                   Navigator.pushReplacementNamed(context, '/catalog');
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.yellow,
+                  primary: Colors.deepPurple,
                 ),
               )
             ],
