@@ -3,7 +3,6 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:provider_shopper/models/cart.dart';
 
 class MyCart extends StatelessWidget {
@@ -40,7 +39,8 @@ class _CartList extends StatelessWidget {
     // This gets the current state of CartModel and also tells Flutter
     // to rebuild this widget when CartModel notifies listeners (in other words,
     // when it changes).
-    var cart = context.watch<CartModel>();
+    // var cart = context.watch<CartModel>();
+    var cart = CartModel();
 
     return ListView.builder(
       itemCount: cart.items.length,
@@ -79,9 +79,10 @@ class _CartTotal extends StatelessWidget {
             //
             // The important thing is that it will not rebuild
             // the rest of the widgets in this build method.
-            Consumer<CartModel>(
-                builder: (context, cart, child) =>
-                    Text('\$${cart.totalPrice}', style: hugeStyle)),
+            //  Consumer<CartModel>(
+            //     builder: (context, cart, child) =>
+            //         Text('\$${cart.totalPrice}', style: hugeStyle)),
+            Text('\$${CartModel().totalPrice}', style: hugeStyle),
             SizedBox(width: 24),
             TextButton(
               onPressed: () {

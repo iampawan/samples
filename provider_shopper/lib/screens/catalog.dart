@@ -3,7 +3,6 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:provider_shopper/models/cart.dart';
 import 'package:provider_shopper/models/catalog.dart';
 
@@ -32,16 +31,17 @@ class _AddButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isInCart = false;
     // The context.select() method will let you listen to changes to
     // a *part* of a model. You define a function that "selects" (i.e. returns)
     // the part you're interested in, and the provider package will not rebuild
     // this widget unless that particular part of the model changes.
     //
     // This can lead to significant performance improvements.
-    var isInCart = context.select<CartModel, bool>(
-      // Here, we are only interested whether [item] is inside the cart.
-      (cart) => cart.items.contains(item),
-    );
+    // var isInCart = context.select<CartModel, bool>(
+    //   // Here, we are only interested whether [item] is inside the cart.
+    //   (cart) => cart.items.contains(item),
+    // );
 
     return TextButton(
       onPressed: isInCart
@@ -51,7 +51,8 @@ class _AddButton extends StatelessWidget {
               // We are using context.read() here because the callback
               // is executed whenever the user taps the button. In other
               // words, it is executed outside the build method.
-              var cart = context.read<CartModel>();
+              // var cart = context.read<CartModel>();
+              var cart = CartModel();
               cart.add(item);
             },
       style: ButtonStyle(
@@ -94,11 +95,12 @@ class _MyListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var item = context.select<CatalogModel, Item>(
-      // Here, we are only interested in the item at [index]. We don't care
-      // about any other change.
-      (catalog) => catalog.getByPosition(index),
-    );
+    // var item = context.select<CatalogModel, Item>(
+    //   // Here, we are only interested in the item at [index]. We don't care
+    //   // about any other change.
+    //   (catalog) => catalog.getByPosition(index),
+    // );
+    var item = CatalogModel().getByPosition(index);
     var textTheme = Theme.of(context).textTheme.headline6;
 
     return Padding(
